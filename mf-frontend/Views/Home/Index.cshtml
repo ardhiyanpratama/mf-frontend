@@ -1,8 +1,37 @@
-﻿@{
+﻿@using mf_frontend.Dto
+@model TrBpkbDto
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container mt-5">
+    <form method="post" id="formSubmitBpkb">
+        <div class="row">
+            <div class="col-6">
+                <div class="mb-4">
+                    <label for="AgreementNumber" class="form-label" style="font-weight:800">Agreement Number</label>
+                    <input asp-for="AgreementNumber" type="text" class="form-control" id="agreement_number" maxlength="100" placeholder="Input Agreement Number" required />
+                    <span class="text-danger" asp-validation-for="AgreementNumber" id="AgreementNumber"></span>
+                </div>
+                <div class="mb-4">
+                    <label for="BranchId" class="form-label" style="font-weight:800">Branch Id</label>
+                    <input asp-for="BranchId" type="text" class="form-control" id="BranchId" maxlength="10" placeholder="Input Branch Id" required />
+                    <span class="text-danger" asp-validation-for="BranchId" id="BranchId"></span>
+                </div>
+                <div class="mb-4">
+                    <label for="BpkbNo" class="form-label" style="font-weight:800">No. BPKB</label>
+                    <input asp-for="BpkbNo" type="text" class="form-control" id="BpkbNo" maxlength="100" placeholder="Input No. BPKB" required />
+                    <span class="text-danger" asp-validation-for="BpkbNo" id="BpkbNo"></span>
+                </div>
+                <div class="mb-4">
+                    <label for="BpkbDateIn" class="form-label" style="font-weight:800">Tanggal BPKB In</label>
+                    <input asp-for="BpkbDateIn" type="text" class="form-control" id="BpkbDateIn" placeholder="Input No. BPKB" required />
+                    <span class="text-danger" asp-validation-for="BpkbDateIn" id="BpkbDateIn"></span>
+                </div>
+            </div>
+            <div class="col-6">
+
+            </div>
+        </div>
+    </form>
 </div>
