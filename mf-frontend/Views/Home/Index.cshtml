@@ -25,13 +25,70 @@
                 </div>
                 <div class="mb-4">
                     <label for="BpkbDateIn" class="form-label" style="font-weight:800">Tanggal BPKB In</label>
-                    <input asp-for="BpkbDateIn" type="text" class="form-control" id="BpkbDateIn" placeholder="Input No. BPKB" required />
+                    <input asp-for="BpkbDateIn" type="date" class="form-control" id="BpkbDateIn" required />
                     <span class="text-danger" asp-validation-for="BpkbDateIn" id="BpkbDateIn"></span>
+                </div>
+                <div class="mb-4">
+                    <label for="BpkbDate" class="form-label" style="font-weight:800">Tanggal BPKB</label>
+                    <input asp-for="BpkbDate" type="date" class="form-control" id="BpkbDate" required />
+                    <span class="text-danger" asp-validation-for="BpkbDate" id="BpkbDate"></span>
+                </div>
+                <div class="mb-4">
+                    <label for="FakturNo" class="form-label" style="font-weight:800">No. Faktur</label>
+                    <input asp-for="FakturNo" type="text" class="form-control" id="FakturNo" maxlength="100" placeholder="Input No. Faktur" required />
+                    <span class="text-danger" asp-validation-for="FakturNo" id="FakturNo"></span>
                 </div>
             </div>
             <div class="col-6">
-
+                <div class="mb-4">
+                    <label for="FakturDate" class="form-label" style="font-weight:800">Tanggal Faktur</label>
+                    <input asp-for="FakturDate" type="date" class="form-control" id="FakturDate" required />
+                    <span class="text-danger" asp-validation-for="FakturDate" id="FakturDate"></span>
+                </div>
+                <div class="mb-4">
+                    <label for="PoliceNo" class="form-label" style="font-weight:800">Nomor Polisi</label>
+                    <input asp-for="PoliceNo" type="text" class="form-control" id="PoliceNo" maxlength="20" placeholder="Input Nomor Polisi" required />
+                    <span class="text-danger" asp-validation-for="PoliceNo" id="PoliceNo"></span>
+                </div>
+                <div class="mb-4">
+                    <label for="LocationId" class="form-label" style="font-weight:800">Lokasi Penyimpanan</label>
+                    <select asp-for="LocationId" class="form-control" id="LocationId">
+                        <option selected>Select Lokasi Penyimpanan</option>
+                    </select>
+                    <span class="text-danger" asp-validation-for="LocationId" id="LocationId"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="mb-4">
+                    <button type="submit" id="bpkb-btn-cancel" class="btn btn-success w-100">Cancel</button>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="mb-4">
+                    <button type="submit" id="bpkb-btn-save" class="btn btn-success w-100">Save</button>
+                </div>
             </div>
         </div>
     </form>
 </div>
+
+@section scripts{
+    <script>
+        function getLocPenyimpanan() {
+            $.getJSON("https://localhost:7004/api/Storage", function (data) {
+                console.log("log data", data);
+                let options_html = '';
+                $.each(data.data, function (index, value) {
+                    options_html += '<option value="' + value.locationId+'">' + value
+                        .locationName + '</option>';
+                });
+                $("#LocationId").html(options_html);
+            });
+        }
+
+        getLocPenyimpanan();
+
+    </script>
+}
